@@ -1,0 +1,26 @@
+/*
+  Landing page styles
+*/
+
+.landing-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.landing-container {
+  text-align: center;
+}
+
+.landing-container a {
+  font-size: 2rem;
+  text-decoration: none;
+  color: $brand-color;
+  transition: color 0.3s ease;
+}
+
+.landing-container a:hover {
+  color: #666;
+}
+
