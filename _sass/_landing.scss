@@ -36,3 +36,10 @@
 .landing-page .footer {
   margin-top: 30rem;
 }
+
+@media (max-width: 768px) {
+  .landing-main-links-container {
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
