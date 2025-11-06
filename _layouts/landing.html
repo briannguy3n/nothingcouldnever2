@@ -83,7 +83,7 @@
       });
     </script>
 
-    <!-- Logo parallax effect -->
+    <!-- Logo rotation effect -->
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         const logo = document.querySelector('.landing-logo');
@@ -91,8 +91,6 @@
         let rotationSpeed = 0.2; // Slow continuous rotation (degrees per frame)
         let baseSpeed = 0.2;
         let fastSpeed = 2;
-        let moveX = 0;
-        let moveY = 0;
         let resizeTimeout = null;
         
         // Handle window resize - speed up rotation temporarily
@@ -109,34 +107,12 @@
         // Continuous rotation animation
         function animate() {
           currentRotation += rotationSpeed;
-          updateTransform();
+          logo.style.transform = `rotate(${currentRotation}deg)`;
           requestAnimationFrame(animate);
         }
         
         // Start the animation
         animate();
-        
-        // Update transform combining both rotation and translation
-        function updateTransform() {
-          logo.style.transform = `translate(${moveX}px, ${moveY}px) rotate(${currentRotation}deg)`;
-        }
-        
-        // Handle mouse movement - parallax effect
-        document.addEventListener('mousemove', function(e) {
-          // Get viewport dimensions
-          const centerX = window.innerWidth / 2;
-          const centerY = window.innerHeight / 2;
-          
-          // Calculate offset from center
-          const offsetX = (e.clientX - centerX) / centerX;
-          const offsetY = (e.clientY - centerY) / centerY;
-          
-          // Apply parallax movement (subtle effect)
-          moveX = offsetX * 30;
-          moveY = offsetY * 30;
-          
-          updateTransform();
-        });
       });
     </script>
   </body>
