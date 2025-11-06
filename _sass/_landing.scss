@@ -26,7 +26,8 @@
   font-size: 2rem;
   text-decoration: none;
   color: $brand-color;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, transform 0.1s ease-out;
+  will-change: transform;
 }
 
 .landing-main-links-container a:hover {

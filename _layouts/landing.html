@@ -29,5 +29,57 @@
         });
       });
     </script>
+
+    <!-- Floating parallax effect -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const links = document.querySelectorAll('.landing-main-links-container a');
+        const container = document.querySelector('.landing-main-links-container');
+        
+        container.addEventListener('mousemove', function(e) {
+          links.forEach(link => {
+            const rect = link.getBoundingClientRect();
+            const linkCenterX = rect.left + rect.width / 2;
+            const linkCenterY = rect.top + rect.height / 2;
+            
+            // Calculate distance from cursor to link center
+            const deltaX = e.clientX - linkCenterX;
+            const deltaY = e.clientY - linkCenterY;
+            const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+            
+            // Magnetic effect radius (in pixels)
+            const maxDistance = 200;
+            
+            if (distance < maxDistance) {
+              // Calculate the strength of the effect (stronger when closer)
+              const strength = (maxDistance - distance) / maxDistance;
+              const moveX = (deltaX / distance) * strength * 20;
+              const moveY = (deltaY / distance) * strength * 20;
+              
+              // Get the original transform values
+              const computedStyle = window.getComputedStyle(link);
+              const transform = computedStyle.transform;
+              
+              // Extract original translateY value from the class
+              let originalY = 0;
+              if (link.classList.contains('landing-link-about')) originalY = 16; // 1rem = 16px
+              if (link.classList.contains('landing-link-music')) originalY = -80; // -5rem
+              if (link.classList.contains('landing-link-photos')) originalY = 128; // 8rem
+              if (link.classList.contains('landing-link-notes')) originalY = -32; // -2rem
+              
+              // Apply the transform with original position + magnetic offset
+              link.style.transform = `translate(${moveX}px, ${originalY + moveY}px)`;
+            }
+          });
+        });
+        
+        container.addEventListener('mouseleave', function() {
+          links.forEach(link => {
+            // Reset to original position
+            link.style.transform = '';
+          });
+        });
+      });
+    </script>
   </body>
 </html>
