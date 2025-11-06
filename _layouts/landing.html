@@ -3,9 +3,31 @@
   {% include head.html %}
   <body class="landing-page">
     <div class="landing-main-links-container">
-      <a href="/about">about</a>
-      <a href="/photos">photos</a>
+      <a href="/about" class="landing-link-about">about</a>
+      <a href="/" class="landing-link-music">music</a>
+      <a href="/photos" class="landing-link-photos">photos</a>
+      <a href="/notes" class="landing-link-notes">notes</a>
     </div>
     {% include footer.html %}
+
+    <!-- Flashing border -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const musicLink = document.querySelector('.landing-link-music');
+        const footer = document.querySelector('.footer');
+        
+        musicLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          // Add the highlight class to the footer
+          footer.classList.add('highlight');
+          
+          // Remove it after 4 seconds
+          setTimeout(function() {
+            footer.classList.remove('highlight');
+          }, 4000);
+        });
+      });
+    </script>
   </body>
 </html>

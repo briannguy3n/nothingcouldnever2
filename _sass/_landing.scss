@@ -16,9 +16,9 @@
 .landing-main-links-container {
   display: flex;
   flex-direction: row;
-  gap: 2rem;
+  gap: 7rem;
   justify-content: center;
-  margin-left: 4rem; 
+  margin-left: 10rem; 
 }
 
 
@@ -33,3 +33,48 @@
   color: #666;
 }
 
+.landing-link-about {
+  transform: translateY(1rem);
+}
+
+.landing-link-music {
+  transform: translateY(-5rem);
+}
+
+.landing-link-photos {
+  transform: translateY(8rem);
+}
+
+.landing-link-notes {
+  transform: translateY(-2rem);
+}
+
+.landing-page .footer {
+  margin-top: 30rem;
+}
+
+@media (max-width: 768px) {
+  .landing-main-links-container {
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
+
+/* Flashing border for footer on music click */
+.landing-page .footer {
+  width: fit-content !important;
+  margin-left: auto;
+  margin-right: auto;
+  outline: 3px solid transparent;
+  outline-offset: 2px;
+}
+
+.landing-page .footer.highlight {
+  animation: monoFlash 0.5s ease-in-out infinite;
+}
+
+/* Monochrome flashing animation */
+@keyframes monoFlash {
+  0%, 100% { outline-color: $brand-color; }
+  50% { outline-color: transparent; }
+}
