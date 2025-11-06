@@ -88,36 +88,33 @@
       document.addEventListener('DOMContentLoaded', function() {
         const logo = document.querySelector('.landing-logo');
         let currentRotation = 0;
-        let targetRotation = 0;
+        let rotationSpeed = 0.2; // Slow continuous rotation (degrees per frame)
+        let baseSpeed = 0.2;
+        let fastSpeed = 2;
         let moveX = 0;
         let moveY = 0;
-        let isRotating = false;
+        let resizeTimeout = null;
         
-        // Handle window resize - trigger rotation
+        // Handle window resize - speed up rotation temporarily
         window.addEventListener('resize', function() {
-          // Add a subtle rotation each time window is resized
-          targetRotation += 10;
+          rotationSpeed = fastSpeed;
           
-          if (!isRotating) {
-            animateRotation();
-          }
+          // Reset to base speed after resize stops
+          clearTimeout(resizeTimeout);
+          resizeTimeout = setTimeout(function() {
+            rotationSpeed = baseSpeed;
+          }, 500); // Return to slow speed 500ms after resize stops
         });
         
-        // Smooth rotation animation
-        function animateRotation() {
-          isRotating = true;
-          const diff = targetRotation - currentRotation;
-          
-          if (Math.abs(diff) > 0.5) {
-            currentRotation += diff * 0.1; // Smooth easing
-            updateTransform();
-            requestAnimationFrame(animateRotation);
-          } else {
-            currentRotation = targetRotation;
-            isRotating = false;
-            updateTransform();
-          }
+        // Continuous rotation animation
+        function animate() {
+          currentRotation += rotationSpeed;
+          updateTransform();
+          requestAnimationFrame(animate);
         }
+        
+        // Start the animation
+        animate();
         
         // Update transform combining both rotation and translation
         function updateTransform() {
