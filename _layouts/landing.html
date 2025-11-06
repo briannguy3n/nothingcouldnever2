@@ -87,7 +87,44 @@
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         const logo = document.querySelector('.landing-logo');
+        let currentRotation = 0;
+        let targetRotation = 0;
+        let moveX = 0;
+        let moveY = 0;
+        let isRotating = false;
         
+        // Handle window resize - trigger rotation
+        window.addEventListener('resize', function() {
+          // Add a subtle rotation each time window is resized
+          targetRotation += 10;
+          
+          if (!isRotating) {
+            animateRotation();
+          }
+        });
+        
+        // Smooth rotation animation
+        function animateRotation() {
+          isRotating = true;
+          const diff = targetRotation - currentRotation;
+          
+          if (Math.abs(diff) > 0.5) {
+            currentRotation += diff * 0.1; // Smooth easing
+            updateTransform();
+            requestAnimationFrame(animateRotation);
+          } else {
+            currentRotation = targetRotation;
+            isRotating = false;
+            updateTransform();
+          }
+        }
+        
+        // Update transform combining both rotation and translation
+        function updateTransform() {
+          logo.style.transform = `translate(${moveX}px, ${moveY}px) rotate(${currentRotation}deg)`;
+        }
+        
+        // Handle mouse movement - parallax effect
         document.addEventListener('mousemove', function(e) {
           // Get viewport dimensions
           const centerX = window.innerWidth / 2;
@@ -98,10 +135,10 @@
           const offsetY = (e.clientY - centerY) / centerY;
           
           // Apply parallax movement (subtle effect)
-          const moveX = offsetX * 30;
-          const moveY = offsetY * 30;
+          moveX = offsetX * 30;
+          moveY = offsetY * 30;
           
-          logo.style.transform = `translate(${moveX}px, ${moveY}px)`;
+          updateTransform();
         });
       });
     </script>
