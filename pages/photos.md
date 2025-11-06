@@ -9,6 +9,6 @@ descriptions:
   # cuba-2.jpg: "Street scene in old Havana"
 ---
 
-<!-- To add new photos: Place image files in assets/img/ directory -->
+<!-- To add new photos: Place image files in assets/img/gallery/ directory -->
 <!-- To add descriptions: Add them to the frontmatter above using the filename -->
 
