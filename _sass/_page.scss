@@ -7,12 +7,13 @@
 
 .about-layout {
   display: flex;
-  gap: 3rem;
+  gap: 4rem;
   align-items: center;
   justify-content: center;
   max-width: 1000px;
   margin: 0 auto;
   min-height: 60vh;
+  padding: 2rem;
 
   .about-image {
     flex-shrink: 0;
@@ -20,10 +21,45 @@
     img {
       max-width: 300px;
       width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+      }
     }
   }
 
   .about-text {
     flex: 1;
+    color: $text-color;
+    
+    p {
+      font-size: 1.125rem;
+      line-height: 1.7;
+      letter-spacing: 0.01em;
+      margin-bottom: 1.5rem;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+  
+  // Responsive: Stack vertically on mobile
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 2.5rem;
+    padding: 1.5rem;
+    
+    .about-image img {
+      max-width: 250px;
+    }
+    
+    .about-text p {
+      font-size: 1rem;
+    }
   }
 }
