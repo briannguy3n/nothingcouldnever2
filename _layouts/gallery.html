@@ -7,7 +7,7 @@ layout: no-header
   
   <div class="gallery-grid">
     {% for file in site.static_files %}
-      {% if file.path contains 'assets/img/' %}
+      {% if file.path contains 'assets/img/gallery/' %}
         {% assign file_ext = file.path | split: '.' | last | downcase %}
         {% if file_ext == 'jpg' or file_ext == 'jpeg' or file_ext == 'png' or file_ext == 'gif' or file_ext == 'webp' %}
           {% assign description = page.descriptions[file.name] %}
