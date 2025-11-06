@@ -16,7 +16,7 @@
 .landing-main-links-container {
   display: flex;
   flex-direction: row;
-  gap: 10rem;
+  gap: 7rem;
   justify-content: center;
   margin-left: 4rem; 
 }
@@ -31,6 +31,22 @@
 
 .landing-main-links-container a:hover {
   color: #666;
+}
+
+.landing-link-about {
+  transform: translateY(1rem);
+}
+
+.landing-link-music {
+  transform: translateY(-5rem);
+}
+
+.landing-link-photos {
+  transform: translateY(8rem);
+}
+
+.landing-link-notes {
+  transform: translateY(-2rem);
 }
 
 .landing-page .footer {
