@@ -18,16 +18,65 @@
   .about-image {
     flex-shrink: 0;
     
+    a {
+      display: block;
+      cursor: pointer;
+      position: relative;
+    }
+    
     img {
       max-width: 300px;
       width: 100%;
       border-radius: 8px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: block;
+    }
+    
+    a:hover img {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    // Custom tooltip styling
+    .image-link[data-tooltip] {
+      &::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        bottom: -50px;
+        left: 50%;
+        transform: translateX(-50%) translateY(10px);
+        background: rgba(0, 0, 0, 0.9);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 6px;
+        font-size: 0.875rem;
+        font-family: $body-font-family;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        z-index: 1000;
+      }
       
-      &:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+      &::before {
+        content: '';
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        transform: translateX(-50%) translateY(10px);
+        border: 8px solid transparent;
+        border-bottom-color: rgba(0, 0, 0, 0.9);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        z-index: 1000;
+      }
+      
+      &:hover::after,
+      &:hover::before {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
       }
     }
   }

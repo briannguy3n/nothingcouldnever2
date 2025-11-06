@@ -6,7 +6,9 @@ permalink: /about
 
 <div class="about-layout">
   <div class="about-image">
-    <img src="/assets/img/pages/1655_001.jpg" alt="nothing - Toronto producer and DJ">
+    <a href="/" class="image-link" data-tooltip="Go back to home page">
+      <img src="/assets/img/pages/1655_001.jpg" alt="nothing - Toronto producer and DJ">
+    </a>
   </div>
   <div class="about-text">
     <p>nothing is a producer and DJ based in Toronto, Canada. Drawing from house, trance, and emotive electronica, his music blends hypnotic rhythms with heart-stirring melodies. It's music made for crying in the club or losing yourself on the dancefloor -- in equal measure.</p>
@@ -16,3 +18,5 @@ permalink: /about
     <p>nothing exists in the spaces between genres, between scenes, between the high and the comedown—and that's exactly where he wants to stay.</p>
   </div>
 </div>
+
+{% include footer.html %}
