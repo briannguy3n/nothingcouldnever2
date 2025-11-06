@@ -13,14 +13,23 @@
   text-align: center;
 }
 
-.landing-container a {
+.landing-main-links-container {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  justify-content: center;
+  margin-left: 4rem; 
+}
+
+
+.landing-main-links-container a {
   font-size: 2rem;
   text-decoration: none;
   color: $brand-color;
   transition: color 0.3s ease;
 }
 
-.landing-container a:hover {
+.landing-main-links-container a:hover {
   color: #666;
 }
 
