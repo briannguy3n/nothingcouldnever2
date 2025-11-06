@@ -18,7 +18,7 @@
   flex-direction: row;
   gap: 7rem;
   justify-content: center;
-  margin-left: 4rem; 
+  margin-left: 10rem; 
 }
 
 
@@ -58,4 +58,23 @@
     flex-direction: column;
     gap: 2rem;
   }
+}
+
+/* Flashing border for footer on music click */
+.landing-page .footer {
+  width: fit-content !important;
+  margin-left: auto;
+  margin-right: auto;
+  outline: 3px solid transparent;
+  outline-offset: 2px;
+}
+
+.landing-page .footer.highlight {
+  animation: monoFlash 0.5s ease-in-out infinite;
+}
+
+/* Monochrome flashing animation */
+@keyframes monoFlash {
+  0%, 100% { outline-color: $brand-color; }
+  50% { outline-color: transparent; }
 }
