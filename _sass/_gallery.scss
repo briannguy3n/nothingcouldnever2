@@ -76,7 +76,12 @@ body:has(.gallery-content) .content-wrapper {
 
 @media (max-width: 600px) {
   .gallery-grid {
-    column-count: 1;
+    column-count: 3;
+    column-gap: 4px;
+  }
+  
+  .gallery-item {
+    margin-bottom: 4px;
   }
   
   .gallery-content {

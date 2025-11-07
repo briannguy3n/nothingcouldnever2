@@ -34,3 +34,20 @@ layout: no-header
 </div>
 
 <script src="{{ site.baseurl }}/assets/js/lightbox.js"></script>
+
+<script>
+  // Shuffle gallery items on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    const gallery = document.querySelector('.gallery-grid');
+    const items = Array.from(gallery.children);
+    
+    // Fisher-Yates shuffle algorithm
+    for (let i = items.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [items[i], items[j]] = [items[j], items[i]];
+    }
+    
+    // Re-append items in shuffled order
+    items.forEach(item => gallery.appendChild(item));
+  });
+</script>
