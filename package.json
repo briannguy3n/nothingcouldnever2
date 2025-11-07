@@ -1,0 +1,16 @@
+{
+  "name": "nothingcouldnever2",
+  "version": "1.0.0",
+  "description": "Jekyll site with Tailwind CSS",
+  "scripts": {
+    "build:tailwind": "tailwindcss -i ./assets/css/tailwind.css -o ./_site/assets/css/tailwind.css --minify",
+    "watch:tailwind": "tailwindcss -i ./assets/css/tailwind.css -o ./_site/assets/css/tailwind.css --watch",
+    "dev:tailwind": "npm run watch:tailwind &",
+    "dev": "npm run watch:tailwind & bundle exec jekyll serve --livereload",
+    "build": "npm run build:tailwind && bundle exec jekyll build"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
+  }
+}
+
