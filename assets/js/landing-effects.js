@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
   const logo = document.querySelector('.landing-logo');
   let currentRotation = 0;
-  let rotationSpeed = 0.2; // Slow continuous rotation (degrees per frame)
+  let rotationSpeed = 0.2; 
   let baseSpeed = 0.2;
   let fastSpeed = 2;
   let resizeTimeout = null;
