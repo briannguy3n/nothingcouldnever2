@@ -11,6 +11,22 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add the highlight class to the footer
     footer.classList.add('highlight');
     
+    // On mobile, scroll to center the footer
+    if (window.innerWidth <= 768) {
+      const footerRect = footer.getBoundingClientRect();
+      const footerTop = footerRect.top + window.pageYOffset;
+      const footerHeight = footerRect.height;
+      const windowHeight = window.innerHeight;
+      
+      // Calculate position to center the footer
+      const scrollToPosition = footerTop - (windowHeight / 2) + (footerHeight / 2);
+      
+      window.scrollTo({
+        top: scrollToPosition,
+        behavior: 'smooth'
+      });
+    }
+    
     // Remove it after 4 seconds
     setTimeout(function() {
       footer.classList.remove('highlight');
