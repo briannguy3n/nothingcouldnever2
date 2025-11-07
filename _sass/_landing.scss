@@ -7,6 +7,17 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  position: relative;
+}
+
+.landing-logo {
+  position: absolute;
+  top: 2rem;
+  right: 5rem;
+  width: 500px;
+  height: auto;
+  transition: transform 0.1s ease-out;
+  will-change: transform;
 }
 
 .landing-container {
@@ -58,6 +69,12 @@
   .landing-main-links-container {
     flex-direction: column;
     gap: 2rem;
+  }
+
+  .landing-logo {
+    max-width: 100px;
+    top: 1rem;
+    right: 1rem;
   }
 }
 
