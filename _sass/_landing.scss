@@ -74,6 +74,31 @@
   }
 }
 
+/* Adjustments for large screens (wider than 1260px) */
+@media (min-width: 2200px) {
+
+  .landing-main-links-container {
+    margin-left: 20rem;
+    margin-top: -5rem;
+  }
+
+  .landing-link-about {
+    margin-right: 10rem;
+  }
+
+  .landing-link-music {
+    margin-top: -7rem;
+  }
+
+  .landing-link-photos {
+    margin-top: 9rem;
+  }
+
+  .landing-link-notes {
+    margin-left: 5rem;
+  }
+}
+
 .landing-page .footer {
   width: fit-content !important;
   margin-left: auto;
