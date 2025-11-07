@@ -15,7 +15,7 @@ permalink: /about
     
     <p>Steadily moving from strength to strength in Canada's underground, you can find him playing warehouse parties or intimate late-night sets. While in the studio, his productions chase euphoria head-on. Everything is still evolving, finding its edges.</p>
     
-    <p>nothing exists in the spaces between genres. And he'll build there anyway.</p>
+    <p>Always searching, always growing, always moving forward. nothing changes if nothing changes.</p>
   </div>
 </div>
 
