@@ -13,7 +13,7 @@ plugins:             [jekyll-paginate, jekyll-sitemap, jekyll-feed, jekyll-seo-t
 title:		           "nothingcouldnever"
 
 # Site URL configuration
-url:                "https://nothingcouldnever.com"
+url:                "https://www.nothingcouldnever.com"
 baseurl:            ""
 
 # RSS 2.0 can be used instead of Atom by uncommenting following two lines

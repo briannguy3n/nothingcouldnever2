@@ -18,7 +18,7 @@ menu:
 social:
 - {icon: 'spotify', link: '#'}
 - {icon: 'soundcloud', link: 'https://soundcloud.com/nothingcouldnever'}
-- {icon: 'bandcamp', link: '#'}
+- {icon: 'bandcamp', link: 'https://nothingcouldnever.bandcamp.com'}
 - {icon: 'instagram', link:  'https://instagram.com/nothingcouldnever'}
 # - {icon: 'rss-square', link: 'rss-feed.xml'}
 
