@@ -1,5 +1,5 @@
-Run local server with:
-`bundle exec jekyll serve --livereload`
+Run server with:
+`npm run dev`
 
 Access site through
 `http://localhost:4000/`
