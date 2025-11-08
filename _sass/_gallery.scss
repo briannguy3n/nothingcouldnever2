@@ -48,6 +48,18 @@ body:has(.gallery-content) .content-wrapper {
   display: block;
   transition: transform 0.3s ease, opacity 0.3s ease;
   border-radius: 4px;
+  background-color: #f0f0f0;
+  min-height: 100px;
+}
+
+/* Lazy loading states */
+.gallery-thumbnail.lazy-image {
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+}
+
+.gallery-thumbnail.lazy-image.loaded {
+  opacity: 1;
 }
 
 .gallery-item:hover .gallery-thumbnail {
@@ -87,6 +99,10 @@ body:has(.gallery-content) .content-wrapper {
   .gallery-content {
     padding-left: 5px;
     padding-right: 5px;
+  }
+  
+  .gallery-thumbnail {
+    min-height: auto;
   }
 }
 

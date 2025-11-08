@@ -12,11 +12,12 @@ layout: no-header
         {% if file_ext == 'jpg' or file_ext == 'jpeg' or file_ext == 'png' or file_ext == 'gif' or file_ext == 'webp' %}
           {% assign description = page.descriptions[file.name] %}
           <div class="gallery-item">
-            <img src="{{ site.baseurl }}{{ file.path }}" 
+            <img data-src="{{ site.baseurl }}{{ file.path }}" 
                  alt="" 
-                 class="gallery-thumbnail"
+                 class="gallery-thumbnail lazy-image"
                  data-full="{{ site.baseurl }}{{ file.path }}"
-                 data-description="{{ description }}">
+                 data-description="{{ description }}"
+                 loading="lazy">
           </div>
         {% endif %}
       {% endif %}
@@ -36,7 +37,6 @@ layout: no-header
 <script src="{{ site.baseurl }}/assets/js/lightbox.js"></script>
 
 <script>
-  // Shuffle gallery items on page load
   document.addEventListener('DOMContentLoaded', function() {
     const gallery = document.querySelector('.gallery-grid');
     const items = Array.from(gallery.children);
@@ -49,5 +49,34 @@ layout: no-header
     
     // Re-append items in shuffled order
     items.forEach(item => gallery.appendChild(item));
+    
+    // Lazy loading with Intersection Observer
+    const lazyImages = document.querySelectorAll('.lazy-image');
+    
+    // Configuration for the observer
+    const imageObserverOptions = {
+      root: null, // viewport
+      rootMargin: '50px', // start loading 50px before image enters viewport
+      threshold: 0.01
+    };
+    
+    // Callback function when image intersects
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          const src = img.getAttribute('data-src');
+          
+          if (src) {
+            img.src = src;
+            img.classList.add('loaded');
+            observer.unobserve(img); // Stop observing once loaded
+          }
+        }
+      });
+    }, imageObserverOptions);
+    
+    // Start observing all lazy images
+    lazyImages.forEach(img => imageObserver.observe(img));
   });
 </script>
