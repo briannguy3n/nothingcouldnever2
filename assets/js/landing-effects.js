@@ -115,3 +115,67 @@ document.addEventListener('DOMContentLoaded', function() {
   animate();
 });
 
+// Under Construction Tooltip
+document.addEventListener('DOMContentLoaded', function() {
+  const tooltip = document.getElementById('construction-tooltip');
+  const closeBtn = document.querySelector('.construction-close');
+  const setsLink = document.querySelector('.landing-link-sets');
+  const notesLink = document.querySelector('.landing-link-notes');
+  
+  // Show tooltip function positioned near the clicked link
+  function showTooltip(e) {
+    e.preventDefault();
+    
+    // Get the position of the clicked link
+    const linkRect = e.target.getBoundingClientRect();
+    
+    // Position tooltip below the link
+    const tooltipTop = linkRect.bottom + 15; // 15px below the link
+    const tooltipLeft = linkRect.left + (linkRect.width / 2);
+    
+    // Set position
+    tooltip.style.top = tooltipTop + 'px';
+    tooltip.style.left = tooltipLeft + 'px';
+    tooltip.style.transform = 'translateX(-50%) translateY(10px)';
+    
+    // Show tooltip
+    tooltip.classList.add('show');
+  }
+  
+  // Hide tooltip function
+  function hideTooltip() {
+    tooltip.classList.remove('show');
+  }
+  
+  // Add click listeners to sets and notes links
+  if (setsLink) {
+    setsLink.addEventListener('click', showTooltip);
+  }
+  
+  if (notesLink) {
+    notesLink.addEventListener('click', showTooltip);
+  }
+  
+  // Close button listener
+  if (closeBtn) {
+    closeBtn.addEventListener('click', hideTooltip);
+  }
+  
+  // Close on clicking outside the tooltip
+  document.addEventListener('click', function(e) {
+    if (tooltip.classList.contains('show') && 
+        !tooltip.contains(e.target) && 
+        !setsLink.contains(e.target) && 
+        !notesLink.contains(e.target)) {
+      hideTooltip();
+    }
+  });
+  
+  // Close on ESC key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && tooltip.classList.contains('show')) {
+      hideTooltip();
+    }
+  });
+});
+
