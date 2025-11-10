@@ -120,7 +120,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const tooltip = document.getElementById('construction-tooltip');
   const closeBtn = document.querySelector('.construction-close');
   const setsLink = document.querySelector('.landing-link-sets');
-  const notesLink = document.querySelector('.landing-link-notes');
   
   // Show tooltip function positioned near the clicked link
   function showTooltip(e) {
@@ -147,13 +146,9 @@ document.addEventListener('DOMContentLoaded', function() {
     tooltip.classList.remove('show');
   }
   
-  // Add click listeners to sets and notes links
+  // Add click listener to sets link
   if (setsLink) {
     setsLink.addEventListener('click', showTooltip);
-  }
-  
-  if (notesLink) {
-    notesLink.addEventListener('click', showTooltip);
   }
   
   // Close button listener
@@ -165,8 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
   document.addEventListener('click', function(e) {
     if (tooltip.classList.contains('show') && 
         !tooltip.contains(e.target) && 
-        !setsLink.contains(e.target) && 
-        !notesLink.contains(e.target)) {
+        !setsLink.contains(e.target)) {
       hideTooltip();
     }
   });
