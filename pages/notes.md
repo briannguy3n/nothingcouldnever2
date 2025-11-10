@@ -4,13 +4,18 @@ title: Notes
 permalink: /notes
 ---
 
+<script>
+  // Check if user is authenticated
+  (function() {
+    if (sessionStorage.getItem('notesAuthenticated') !== 'true') {
+      window.location.href = '/notes-password';
+    }
+  })();
+</script>
 
 <div class="notes-page-outer">
   <div class="notes-page-inner">
-    <h2 class="notes-page-title">Under Construction</h2>
-    <p class="notes-page-message">This page is currently being built. Check back soon.</p>
-    <a href="/" class="notes-page-home-link">
-      Go back home
-    </a>
+    <h2 class="notes-page-title">Notes</h2>
+    <!-- Add your notes content here -->
   </div>
 </div>
