@@ -6,21 +6,19 @@ layout: no-header
   <h1>{{ page.title }}</h1>
   
   <div class="gallery-grid">
-    {% for file in site.static_files %}
-      {% if file.path contains 'assets/img/gallery/' %}
-        {% assign file_ext = file.path | split: '.' | last | downcase %}
-        {% if file_ext == 'jpg' or file_ext == 'jpeg' or file_ext == 'png' or file_ext == 'gif' or file_ext == 'webp' %}
-          {% assign description = page.descriptions[file.name] %}
-          <div class="gallery-item">
-            <img data-src="{{ site.baseurl }}{{ file.path }}" 
-                 alt="" 
-                 class="gallery-thumbnail lazy-image"
-                 data-full="{{ site.baseurl }}{{ file.path }}"
-                 data-description="{{ description }}"
-                 loading="lazy">
-          </div>
-        {% endif %}
-      {% endif %}
+    {% assign gallery_files = site.static_files | where_exp: "file", "file.path contains 'assets/img/gallery/'" %}
+    {% assign image_files = gallery_files | where_exp: "file", "file.extname == '.jpg' or file.extname == '.jpeg' or file.extname == '.png' or file.extname == '.gif' or file.extname == '.webp'" %}
+    {% assign sorted_files = image_files | sort: 'modified_time' %}
+    {% for file in sorted_files %}
+      {% assign description = page.descriptions[file.name] %}
+      <div class="gallery-item">
+        <img data-src="{{ site.baseurl }}{{ file.path }}" 
+             alt="" 
+             class="gallery-thumbnail lazy-image"
+             data-full="{{ site.baseurl }}{{ file.path }}"
+             data-description="{{ description }}"
+             loading="lazy">
+      </div>
     {% endfor %}
   </div>
 </div>
@@ -38,17 +36,18 @@ layout: no-header
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const gallery = document.querySelector('.gallery-grid');
-    const items = Array.from(gallery.children);
-    
-    // Fisher-Yates shuffle algorithm
-    for (let i = items.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [items[i], items[j]] = [items[j], items[i]];
-    }
-    
-    // Re-append items in shuffled order
-    items.forEach(item => gallery.appendChild(item));
+    // Random shuffle code (commented out for chronological sorting)
+    // const gallery = document.querySelector('.gallery-grid');
+    // const items = Array.from(gallery.children);
+    // 
+    // // Fisher-Yates shuffle algorithm
+    // for (let i = items.length - 1; i > 0; i--) {
+    //   const j = Math.floor(Math.random() * (i + 1));
+    //   [items[i], items[j]] = [items[j], items[i]];
+    // }
+    // 
+    // // Re-append items in shuffled order
+    // items.forEach(item => gallery.appendChild(item));
     
     // Lazy loading with Intersection Observer
     const lazyImages = document.querySelectorAll('.lazy-image');
