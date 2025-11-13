@@ -6,19 +6,22 @@ layout: no-header
   <h1>{{ page.title }}</h1>
   
   <div class="gallery-grid">
-    {% assign gallery_files = site.static_files | where_exp: "file", "file.path contains 'assets/img/gallery/'" %}
-    {% assign image_files = gallery_files | where_exp: "file", "file.extname == '.jpg' or file.extname == '.jpeg' or file.extname == '.png' or file.extname == '.gif' or file.extname == '.webp'" %}
-    {% assign sorted_files = image_files | sort: 'modified_time' %}
-    {% for file in sorted_files %}
-      {% assign description = page.descriptions[file.name] %}
-      <div class="gallery-item">
-        <img data-src="{{ site.baseurl }}{{ file.path }}" 
-             alt="" 
-             class="gallery-thumbnail lazy-image"
-             data-full="{{ site.baseurl }}{{ file.path }}"
-             data-description="{{ description }}"
-             loading="lazy">
-      </div>
+    {% assign gallery_files = site.static_files %}
+    {% for file in gallery_files %}
+      {% assign file_path = file.path | downcase %}
+      {% if file_path contains 'assets/img/gallery/' %}
+        {% if file.extname == '.jpg' or file.extname == '.jpeg' or file.extname == '.png' or file.extname == '.gif' or file.extname == '.webp' %}
+          {% assign description = page.descriptions[file.name] %}
+          <div class="gallery-item" data-modified="{{ file.modified_time | date: '%s' }}">
+            <img data-src="{{ site.baseurl }}{{ file.path }}" 
+                 alt="" 
+                 class="gallery-thumbnail lazy-image"
+                 data-full="{{ site.baseurl }}{{ file.path }}"
+                 data-description="{{ description }}"
+                 loading="lazy">
+          </div>
+        {% endif %}
+      {% endif %}
     {% endfor %}
   </div>
 </div>
@@ -36,6 +39,18 @@ layout: no-header
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
+    // Sort gallery items by modification time (newest first)
+    const gallery = document.querySelector('.gallery-grid');
+    if (gallery) {
+      const items = Array.from(gallery.children);
+      items.sort((a, b) => {
+        const timeA = parseInt(a.getAttribute('data-modified')) || 0;
+        const timeB = parseInt(b.getAttribute('data-modified')) || 0;
+        return timeB - timeA; // Sort descending (newest first)
+      });
+      items.forEach(item => gallery.appendChild(item));
+    }
+    
     // Random shuffle code (commented out for chronological sorting)
     // const gallery = document.querySelector('.gallery-grid');
     // const items = Array.from(gallery.children);
