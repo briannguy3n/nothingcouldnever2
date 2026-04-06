@@ -16,7 +16,7 @@ menu:
 
 # Available social icons are powered by Font Awesome, so you can use any icon that they offer
 social:
-- {icon: 'spotify', link: '#'}
+- {icon: 'spotify', link: 'https://open.spotify.com/artist/2jOSPjlx9uGVPAdDQ402VY?si=Fm0mCAJsQJ-tzFJpYNOC4g'}
 - {icon: 'soundcloud', link: 'https://soundcloud.com/nothingcouldnever'}
 - {icon: 'bandcamp', link: 'https://nothingcouldnever.bandcamp.com'}
 - {icon: 'instagram', link:  'https://instagram.com/nothingcouldnever'}
