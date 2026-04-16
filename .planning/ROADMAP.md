@@ -36,9 +36,9 @@ Plans:
   5. Adding or editing a link in `_data/links.yml` is reflected on the page after a Jekyll build — no code changes required
 **Plans:** 3 plans
 Plans:
-- [ ] 02-01-PLAN.md — Chooser page: layout, SCSS, root page at /
-- [ ] 02-02-PLAN.md — Linktree page: YAML data, layout, SCSS, links page, SCSS import registration
-- [ ] 02-03-PLAN.md — Build verification and visual checkpoint
+- [x] 02-01-PLAN.md — Chooser page: layout, SCSS, root page at /
+- [x] 02-02-PLAN.md — Linktree page: YAML data, layout, SCSS, links page, SCSS import registration
+- [x] 02-03-PLAN.md — Build verification and visual checkpoint
 **UI hint**: yes
 
 ## Progress
