@@ -21,9 +21,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   min-height: 100vh;
-  gap: 16px;
+  padding-top: 25vh;
 }
 
 .chooser-primary {
@@ -32,6 +32,7 @@
   color: #ffffff;
   text-decoration: none;
   transition: color 0.2s ease;
+  margin-top: 10vh;
 
   &:hover {
     color: #aaaaaa;
@@ -44,6 +45,7 @@
   color: #888888;
   text-decoration: none;
   transition: color 0.2s ease;
+  margin-top: 38vh;
 
   &:hover {
     color: #cccccc;
@@ -54,9 +56,5 @@
 @media (max-width: 480px) {
   .chooser-primary {
     font-size: 3rem;
-  }
-
-  .chooser-container {
-    gap: 8px;
   }
 }

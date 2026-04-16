@@ -4,10 +4,11 @@
 */
 
 .linktree-page {
-  background: #000000;
+  background: #3d3d3d;
   color: #ffffff;
   min-height: 100vh;
   margin: 0;
+  padding: 32px 16px;
 
   // Override _base.scss global: a { color: $brand-color } where $brand-color = black
   a {
@@ -17,9 +18,11 @@
 }
 
 .linktree-wrapper {
-  max-width: 640px;
+  max-width: 520px;
   margin: 0 auto;
-  padding: 48px 16px;
+  padding: 48px 20px;
+  background: #000000;
+  border-radius: 28px;
 }
 
 // Profile header
