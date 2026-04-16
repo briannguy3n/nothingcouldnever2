@@ -1,0 +1,25 @@
+# One URL per line. Blank lines and lines starting with # are ignored.
+#
+# Bare URL  → auto-classified by host
+# key: URL  → force a category (built-in keys: releases, sets, shows, video)
+#             unknown keys create a new custom section
+#
+# Run: npm --prefix tools/link-enricher run enrich
+#
+# ─── Examples (remove the # to activate) ──────────────────────────────────
+#
+# Bare URLs — auto-classified:
+# https://open.spotify.com/album/abc123                → Releases
+# https://soundcloud.com/n0thing/live-at-venue         → Sets & Recordings
+# https://www.youtube.com/watch?v=xxxxxxxxxxx          → Video
+# https://ra.co/events/12345                           → Tour / Shows
+#
+# Override into a built-in section:
+# sets: https://open.spotify.com/playlist/my-dj-mix    → Sets & Recordings
+# releases: https://youtube.com/watch?v=release-promo  → Releases
+#
+# Custom section (capitalization = display name):
+# Merch: https://shop.example.com/tee                  → new "Merch" section
+# Press: https://pitchfork.com/reviews/albums/12345    → new "Press" section
+#
+# ──────────────────────────────────────────────────────────────────────────

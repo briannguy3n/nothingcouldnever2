@@ -19,3 +19,13 @@ baseurl:            ""
 # RSS 2.0 can be used instead of Atom by uncommenting following two lines
 #feed:
 #  path: rss-feed.xml
+
+# Keep Jekyll away from developer tooling and Ruby/Node artifacts
+exclude:
+  - tools
+  - node_modules
+  - vendor
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - CLAUDE.md
