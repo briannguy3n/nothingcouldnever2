@@ -15,17 +15,22 @@ A visitor hitting the site immediately sees n0thing's DJ identity and can reach 
 - ✓ Jekyll static site on GitHub Pages — existing
 - ✓ Dark landing page with magnetic link effects — existing (`landing.html`)
 - ✓ Blog, gallery, notes, about, contact pages — existing
+- ✓ Existing landing page moved to `/personal` — validated in Phase 01 (PRSV-01, PRSV-02)
+- ✓ Root `/` cleared (404) — validated in Phase 01
+
+### Validated
+
+- ✓ Root (`/`) shows dark chooser splash — "Links" (prominent, → /links) and "other stuff" (secondary, → /personal) — validated Phase 02
+- ✓ Linktree at `/links` — dark card hub, YAML-driven, 4 categories, color-block thumbnails, hover effects — validated Phase 02
+- ✓ Link data managed via `_data/links.yml` — validated Phase 02
+- ✓ Existing site pages unaffected — validated Phase 02
 
 ### Active
 
-- [ ] Root (`/`) shows a chooser splash with two buttons: **n0thing** (prominent) and **Other Stuff**
-- [ ] "n0thing" button routes to `/links` — the linktree page
-- [ ] "Other Stuff" button routes to `/personal` — the existing landing page (moved from `/`)
-- [ ] Linktree page has dark aesthetic, profile photo + "n0thing" name at top
-- [ ] Links are grouped into categories (e.g. Tour Dates, Releases, Sets & Recordings)
-- [ ] Each link card has a thumbnail image, title, and external URL
-- [ ] Link data is managed via `_data/links.yml` (no code changes needed to add/edit links)
-- [ ] Existing site pages (blog, gallery, notes, about, contact) remain fully functional
+- [ ] Populate `_data/links.yml` with real links (currently placeholder data)
+- [ ] Add profile photo to linktree header (currently empty avatar div)
+- [ ] Fix `relative_url` filter on chooser hrefs (WR-01 from code review)
+- [ ] Add `lang="en"` to chooser and linktree `<html>` tags (WR-02 accessibility)
 
 ### Out of Scope
 
@@ -54,8 +59,8 @@ A visitor hitting the site immediately sees n0thing's DJ identity and can reach 
 |----------|-----------|---------|
 | Keep Jekyll, no new framework | Existing infra, no deployment changes needed | — Pending |
 | YAML-driven links | Simple enough for the use case, no overkill | — Pending |
-| Existing landing moves to `/personal` | Preserves "Other Stuff" destination intact | — Pending |
-| Chooser at root replaces current landing | Single entry point that routes by identity | — Pending |
+| Existing landing moves to `/personal` | Preserves "Other Stuff" destination intact | Done — Phase 01 |
+| Chooser at root replaces current landing | Single entry point that routes by identity | — Pending Phase 02 |
 
 ## Evolution
 
@@ -75,4 +80,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-04-16 after initialization*
+*Last updated: 2026-04-16 — Phase 01 complete (route restructure)*
