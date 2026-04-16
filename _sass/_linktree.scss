@@ -34,9 +34,17 @@
 .linktree-avatar {
   width: 80px;
   height: 80px;
-  background: #111111;
   border-radius: 50%;
+  overflow: hidden;
   margin: 0 auto 16px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.4) translateY(10%);
+    transform-origin: center center;
+  }
 }
 
 .linktree-name {
@@ -53,11 +61,12 @@
 
 .linktree-category-label {
   font-size: 0.75rem;
-  font-weight: 400;
-  color: #888888;
+  font-weight: 700;
+  color: #ffffff;
   text-transform: uppercase;
   letter-spacing: 0.15em;
   margin: 0 0 16px 0;
+  text-align: center;
 }
 
 // Link cards
