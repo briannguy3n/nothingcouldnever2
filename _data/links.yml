@@ -2,3 +2,12 @@
     - title: The Sound
       url: https://open.spotify.com/track/5Til8hU7iQS3GFXRSYgo26?si=d98c259121e94cb2
       image: /assets/img/links/the-sound-1a44a7.jpg
+- links:
+    - title: n0thing | Live at Platform9 Vancouver
+      url: https://soundcloud.com/nothingcouldnever/nothing-live-at-platform9-vancouver
+      image: /assets/img/links/n0thing-or-live-at-platform9-vancouver-by-n0thing-4d1ad4.jpg
+    - title: n0thing | Live At The Modern
+      url: https://soundcloud.com/nothingcouldnever/nothing-live-at-the-modern
+      image: /assets/img/links/n0thing-or-live-at-the-modern-by-n0thing-2cb18c.jpg
+  category: Live Sets
+  color_key: live
