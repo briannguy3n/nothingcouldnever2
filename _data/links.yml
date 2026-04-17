@@ -1,0 +1,29 @@
+- category: Releases
+  color_key: releases
+  links:
+    - title: "Release title placeholder"
+      url: "https://example.com"
+    - title: "Release title placeholder"
+      url: "https://example.com"
+
+- category: Sets & Recordings
+  color_key: sets
+  links:
+    - title: "Set title placeholder"
+      url: "https://example.com"
+    - title: "Set title placeholder"
+      url: "https://example.com"
+
+- category: Tour / Shows
+  color_key: shows
+  links:
+    - title: "Show title placeholder"
+      url: "https://example.com"
+
+- category: Video
+  color_key: video
+  links:
+    - title: "Video title placeholder"
+      url: "https://example.com"
+    - title: "Video title placeholder"
+      url: "https://example.com"

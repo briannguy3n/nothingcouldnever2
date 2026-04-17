@@ -1,0 +1,60 @@
+/*
+  Chooser page styles — dark full-screen splash
+  Scoped to .chooser-page to prevent global _base.scss color bleed
+*/
+
+.chooser-page {
+  background: #000000;
+  color: #ffffff;
+  min-height: 100vh;
+  margin: 0;
+
+  // Override _base.scss global: a { color: $brand-color } where $brand-color = black
+  // Without this, links are black-on-black — invisible on dark background
+  a {
+    color: #ffffff;
+    text-decoration: none;
+  }
+}
+
+.chooser-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding-top: 25vh;
+}
+
+.chooser-primary {
+  font-size: 4.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  margin-top: 10vh;
+
+  &:hover {
+    color: #aaaaaa;
+  }
+}
+
+.chooser-secondary {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #888888;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  margin-top: 38vh;
+
+  &:hover {
+    color: #cccccc;
+  }
+}
+
+// Mobile breakpoint per UI-SPEC
+@media (max-width: 480px) {
+  .chooser-primary {
+    font-size: 3rem;
+  }
+}

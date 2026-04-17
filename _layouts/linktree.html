@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+  {% include head.html %}
+  <body class="linktree-page">
+    <div class="linktree-wrapper">
+      <div class="linktree-header">
+        <div class="linktree-avatar">
+          <img src="{{ '/assets/img/n0thing-avatar.jpg' | relative_url }}" alt="n0thing">
+        </div>
+        <h1 class="linktree-name">n0thing</h1>
+      </div>
+
+      {% for section in site.data.links %}
+      <div class="linktree-category">
+        <p class="linktree-category-label">{{ section.category }}</p>
+        {% for link in section.links %}
+        <a href="{{ link.url }}" target="_blank" rel="noopener noreferrer" class="linktree-card">
+          <div class="linktree-card-thumb linktree-thumb--{{ section.color_key }}"></div>
+          <span class="linktree-card-title">{{ link.title }}</span>
+        </a>
+        {% endfor %}
+      </div>
+      {% endfor %}
+    </div>
+  </body>
+</html>
