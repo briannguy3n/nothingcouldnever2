@@ -1,7 +1,7 @@
-# nothingcouldnever.com
+# Personal site
 
 Jekyll site served from GitHub Pages. Chooser splash at `/` routes to either
-the **n0thing** DJ linktree (`/links`) or the personal site (`/personal`).
+a linktree (`/links`) or the personal site (`/personal`).
 
 ## Local dev
 
