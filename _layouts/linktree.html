@@ -16,17 +16,95 @@
         <p class="linktree-category-label">{{ section.category }}</p>
         {% endif %}
         {% for link in section.links %}
-        <a href="{{ link.url }}" target="_blank" rel="noopener noreferrer" class="linktree-card">
-          <div class="linktree-card-thumb linktree-thumb--{{ section.color_key }}">
-            {% if link.image %}
-              <img src="{{ link.image | relative_url }}" alt="{{ link.title | escape }}" loading="lazy">
-            {% endif %}
-          </div>
-          <span class="linktree-card-title">{{ link.title }}</span>
-        </a>
+        <div class="linktree-card">
+          <a href="{{ link.url }}" target="_blank" rel="noopener noreferrer" class="linktree-card-link">
+            <div class="linktree-card-thumb{% if section.color_key %} linktree-thumb--{{ section.color_key }}{% endif %}">
+              {% if link.image %}
+                <img src="{{ link.image | relative_url }}" alt="{{ link.title | escape }}" loading="lazy">
+              {% endif %}
+            </div>
+            <span class="linktree-card-title">{{ link.title }}</span>
+          </a>
+          <button
+            type="button"
+            class="linktree-card-share"
+            aria-label="Share {{ link.title | escape }}"
+            data-url="{{ link.url }}"
+            data-title="{{ link.title | escape }}"
+            {% if link.image %}data-image="{{ link.image | relative_url }}"{% endif %}>
+            <span class="linktree-card-share-dots" aria-hidden="true"></span>
+          </button>
+        </div>
         {% endfor %}
       </div>
       {% endfor %}
     </div>
+
+    <div class="linktree-share" hidden aria-hidden="true">
+      <div class="linktree-share__backdrop" data-share-close></div>
+      <div class="linktree-share__dialog" role="dialog" aria-modal="true" aria-labelledby="linktree-share-title">
+        <header class="linktree-share__header">
+          <h2 id="linktree-share-title">Share link</h2>
+          <button type="button" class="linktree-share__close" aria-label="Close share dialog" data-share-close>
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          </button>
+        </header>
+
+        <div class="linktree-share__preview">
+          <div class="linktree-share__thumb">
+            <img class="linktree-share__image" alt="" hidden>
+          </div>
+          <div class="linktree-share__title"></div>
+          <div class="linktree-share__url"></div>
+        </div>
+
+        <div class="linktree-share__buttons">
+          <button type="button" class="linktree-share__btn" data-share-action="copy">
+            <span class="linktree-share__icon linktree-share__icon--neutral">
+              <i class="fa-solid fa-link" aria-hidden="true"></i>
+            </span>
+            <span class="linktree-share__label">Copy link</span>
+          </button>
+          <a class="linktree-share__btn" data-share-action="x" target="_blank" rel="noopener noreferrer">
+            <span class="linktree-share__icon linktree-share__icon--x">
+              <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+            </span>
+            <span class="linktree-share__label">X</span>
+          </a>
+          <a class="linktree-share__btn" data-share-action="facebook" target="_blank" rel="noopener noreferrer">
+            <span class="linktree-share__icon linktree-share__icon--facebook">
+              <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+            </span>
+            <span class="linktree-share__label">Facebook</span>
+          </a>
+          <a class="linktree-share__btn" data-share-action="whatsapp" target="_blank" rel="noopener noreferrer">
+            <span class="linktree-share__icon linktree-share__icon--whatsapp">
+              <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+            </span>
+            <span class="linktree-share__label">WhatsApp</span>
+          </a>
+          <a class="linktree-share__btn" data-share-action="messenger" target="_blank" rel="noopener noreferrer">
+            <span class="linktree-share__icon linktree-share__icon--messenger">
+              <i class="fa-brands fa-facebook-messenger" aria-hidden="true"></i>
+            </span>
+            <span class="linktree-share__label">Messenger</span>
+          </a>
+          <a class="linktree-share__btn" data-share-action="email">
+            <span class="linktree-share__icon linktree-share__icon--email">
+              <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+            </span>
+            <span class="linktree-share__label">Email</span>
+          </a>
+          <button type="button" class="linktree-share__btn" data-share-action="more" hidden>
+            <span class="linktree-share__icon linktree-share__icon--more">
+              <i class="fa-solid fa-arrow-up-from-bracket" aria-hidden="true"></i>
+            </span>
+            <span class="linktree-share__label">More</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="{{ '/assets/js/linktree-share.js' | relative_url }}" defer></script>
   </body>
 </html>

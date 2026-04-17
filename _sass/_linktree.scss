@@ -69,16 +69,17 @@
   text-align: center;
 }
 
-// Link cards
+// Link cards — wrapper holds the clickable link + the share button
 .linktree-card {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   height: 64px;
   background: #111111;
   border-radius: 8px;
   border: 1px solid transparent;
   margin-bottom: 8px;
   transition: transform 0.15s ease, border-color 0.15s ease;
+  overflow: hidden;
 
   &:hover {
     transform: translateY(-2px);
@@ -86,11 +87,17 @@
   }
 }
 
+.linktree-card-link {
+  display: flex;
+  align-items: center;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
 // Color-block thumbnails (left side of card) — also hosts the artwork img when present
 .linktree-card-thumb {
   width: 64px;
   height: 64px;
-  border-radius: 8px 0 0 8px;
   flex-shrink: 0;
   overflow: hidden;
   background: #2a2a2a; // default for custom categories without a dedicated accent rule
@@ -113,7 +120,259 @@
   font-size: 1rem;
   font-weight: 400;
   color: #ffffff;
-  padding-left: 16px;
+  padding: 0 12px 0 16px;
+  text-align: center;
+  flex: 1 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Hamburger / share button on the right of each card
+.linktree-card-share {
+  flex: 0 0 auto;
+  width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.15s ease, background-color 0.15s ease;
+
+  &:hover,
+  &:focus-visible {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.06);
+    outline: none;
+  }
+}
+
+.linktree-card-share-dots {
+  position: relative;
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  &::before { top: -8px; }
+  &::after  { top: 8px; }
+}
+
+// Share modal
+.linktree-share {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  &[hidden] { display: none; }
+}
+
+.linktree-share__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(2px);
+}
+
+.linktree-share__dialog {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  background: #ffffff;
+  color: #111111;
+  border-radius: 20px 20px 0 0;
+  padding: 20px 20px 24px;
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.3);
+  animation: linktree-share-up 0.2s ease-out;
+}
+
+@keyframes linktree-share-up {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+@media (min-width: 600px) {
+  .linktree-share {
+    align-items: center;
+  }
+  .linktree-share__dialog {
+    border-radius: 20px;
+    max-width: 440px;
+  }
+}
+
+.linktree-share__header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+
+  h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+    color: #111111;
+  }
+}
+
+.linktree-share__close {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: 0;
+  width: 32px;
+  height: 32px;
+  font-size: 1.1rem;
+  color: #111111;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+
+  &:hover { background: rgba(0, 0, 0, 0.05); }
+}
+
+.linktree-share__preview {
+  background: #f4f4f5;
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.linktree-share__thumb {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 12px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #e4e4e7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  &:empty,
+  img[hidden] { display: none; }
+}
+
+.linktree-share__title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #111111;
+  margin-bottom: 6px;
+  word-break: break-word;
+}
+
+.linktree-share__url {
+  font-size: 0.85rem;
+  color: #6b7280;
+  word-break: break-all;
+}
+
+.linktree-share__buttons {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 4px 2px 8px;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar { display: none; }
+}
+
+.linktree-share__btn {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 64px;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  color: #111111;
+  text-decoration: none;
+
+  &:hover .linktree-share__icon {
+    transform: scale(1.05);
+  }
+}
+
+.linktree-share__icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 1.25rem;
+  transition: transform 0.12s ease;
+}
+
+.linktree-share__icon--neutral   { background: #e4e4e7; color: #111111; }
+.linktree-share__icon--x         { background: #000000; }
+.linktree-share__icon--facebook  { background: #1877f2; }
+.linktree-share__icon--whatsapp  { background: #25d366; }
+.linktree-share__icon--messenger {
+  background: linear-gradient(45deg, #0078ff, #a020f0, #ff6a00);
+}
+.linktree-share__icon--email     { background: #52525b; }
+.linktree-share__icon--more      { background: #e4e4e7; color: #111111; }
+
+.linktree-share__label {
+  font-size: 0.75rem;
+  color: #111111;
+  text-align: center;
+  white-space: nowrap;
+}
+
+// Toast for copy confirmation
+.linktree-share__toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.85);
+  color: #ffffff;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  z-index: 1100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+
+  &.is-visible { opacity: 1; }
 }
 
 // Mobile breakpoint per UI-SPEC
@@ -129,5 +388,9 @@
   .linktree-card-thumb {
     width: 56px;
     height: 56px;
+  }
+
+  .linktree-card-share {
+    width: 40px;
   }
 }
