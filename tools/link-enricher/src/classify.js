@@ -20,7 +20,15 @@
 //     order: 0,
 //   },
 // ];
-const BUILTIN = [];
+const BUILTIN = [
+  {
+    keys: ['live', 'livesets', 'liveset', 'live-sets'],
+    hosts: [],
+    category: 'Live Sets',
+    color_key: 'live',
+    order: 0,
+  },
+];
 
 function findByKey(key) {
   const lc = key.toLowerCase().trim();
