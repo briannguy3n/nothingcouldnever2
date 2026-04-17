@@ -24,7 +24,7 @@ export function buildYaml(entries) {
 
   const uncategorized = grouped.get(UNCATEGORIZED);
 
-  const shaped = [...orderedSections, ...(uncategorized ? [uncategorized] : [])].map((section) => {
+  const shaped = [...(uncategorized ? [uncategorized] : []), ...orderedSections].map((section) => {
     const out = { links: section.links };
     if (section.category) out.category = section.category;
     if (section.color_key) out.color_key = section.color_key;

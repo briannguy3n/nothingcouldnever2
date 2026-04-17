@@ -60,8 +60,8 @@
 }
 
 .linktree-category-label {
-  font-size: 0.75rem;
-  font-weight: 700;
+  font-size: 0.95rem;
+  font-weight: 800;
   color: #ffffff;
   text-transform: uppercase;
   letter-spacing: 0.15em;
@@ -115,12 +115,13 @@
 .linktree-thumb--sets     { background: #1a2a3a; }
 .linktree-thumb--shows    { background: #2a1a3a; }
 .linktree-thumb--video    { background: #3a1a1a; }
+.linktree-thumb--live     { background: #3a2a1a; }
 
 .linktree-card-title {
-  font-size: 1rem;
+  font-size: 0.875rem;
   font-weight: 400;
   color: #ffffff;
-  padding: 0 12px 0 16px;
+  padding: 0 36px 0 16px;
   text-align: center;
   flex: 1 1 auto;
   overflow: hidden;

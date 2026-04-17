@@ -83,8 +83,9 @@ sets: https://open.spotify.com/playlist/my-dj-mix
 
 ## Section order
 
-Categorized sections render in the order of each category's `order` field in
-`src/classify.js`. Uncategorized links render after, with no section heading.
+Uncategorized links (bare URLs whose host doesn't match any BUILTIN entry)
+render first with no section heading. Categorized sections then render in the
+order of each category's `order` field in `src/classify.js`.
 
 ## What the script does, end to end
 
