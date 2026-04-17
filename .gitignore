@@ -24,3 +24,9 @@ Thumbs.db
 .vscode/
 .idea/
 .planning/
+
+# Link enricher tool
+tools/link-enricher/node_modules/
+tools/link-enricher/package-lock.json
+
+.claude/worktrees

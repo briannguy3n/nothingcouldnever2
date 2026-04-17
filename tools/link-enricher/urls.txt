@@ -1,0 +1,17 @@
+# One URL per line. Blank lines and lines starting with # are ignored.
+#
+# Line shapes:
+#   https://example.com/...      bare URL → uncategorized unless its host
+#                                matches a category in src/classify.js
+#   key: https://example.com/... force into a category whose `keys:` list
+#                                includes `key` (case-insensitive).
+#                                Unknown keys → error.
+#
+# Categories are NOT auto-created. To add one, edit
+# tools/link-enricher/src/classify.js. URLs without a matching category just
+# render categoryless on the linktree.
+#
+# Run: npm --prefix tools/link-enricher run enrich
+#
+
+https://open.spotify.com/track/5Til8hU7iQS3GFXRSYgo26?si=d98c259121e94cb2

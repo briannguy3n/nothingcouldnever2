@@ -1,0 +1,19 @@
+{
+  "name": "link-enricher",
+  "version": "1.0.0",
+  "description": "Turn a list of URLs into ready-to-serve linktree entries (title + artwork) for the nothingcouldnever.com Jekyll site.",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "enrich": "node enrich.js"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "open-graph-scraper": "^6.9.0",
+    "slugify": "^1.6.6",
+    "undici": "^6.21.0"
+  }
+}

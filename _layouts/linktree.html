@@ -12,10 +12,16 @@
 
       {% for section in site.data.links %}
       <div class="linktree-category">
+        {% if section.category %}
         <p class="linktree-category-label">{{ section.category }}</p>
+        {% endif %}
         {% for link in section.links %}
         <a href="{{ link.url }}" target="_blank" rel="noopener noreferrer" class="linktree-card">
-          <div class="linktree-card-thumb linktree-thumb--{{ section.color_key }}"></div>
+          <div class="linktree-card-thumb linktree-thumb--{{ section.color_key }}">
+            {% if link.image %}
+              <img src="{{ link.image | relative_url }}" alt="{{ link.title | escape }}" loading="lazy">
+            {% endif %}
+          </div>
           <span class="linktree-card-title">{{ link.title }}</span>
         </a>
         {% endfor %}
