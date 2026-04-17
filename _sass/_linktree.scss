@@ -8,7 +8,7 @@
   color: #ffffff;
   min-height: 100vh;
   margin: 0;
-  padding: 32px 16px;
+  padding: 32px 16px 0;
 
   // Override _base.scss global: a { color: $brand-color } where $brand-color = black
   a {
@@ -18,11 +18,41 @@
 }
 
 .linktree-wrapper {
+  position: relative;
   max-width: 520px;
   margin: 0 auto;
   padding: 48px 20px;
   background: #000000;
-  border-radius: 28px;
+  border-radius: 28px 28px 0 0;
+  min-height: calc(100vh - 32px);
+  display: flex;
+  flex-direction: column;
+}
+
+// Top-right page-level share trigger
+.linktree-page-share {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 0;
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+
+  &:hover,
+  &:focus-visible {
+    background: rgba(255, 255, 255, 0.14);
+    transform: translateY(-1px);
+    outline: none;
+  }
 }
 
 // Profile header
@@ -107,6 +137,7 @@
     height: 100%;
     object-fit: cover;
     display: block;
+    margin: 0;
   }
 }
 
@@ -172,6 +203,35 @@
 
   &::before { top: -8px; }
   &::after  { top: 8px; }
+}
+
+// Social icon row at the bottom of the linktree
+.linktree-socials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  margin-top: auto;
+  padding-top: 32px;
+  padding-bottom: 0px;
+}
+
+.linktree-social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  color: #ffffff;
+  font-size: 1.4rem;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+
+  &:hover,
+  &:focus-visible {
+    transform: translateY(-2px);
+    opacity: 0.85;
+    outline: none;
+  }
 }
 
 // Share modal
@@ -279,6 +339,7 @@
     height: 100%;
     object-fit: cover;
     display: block;
+    margin: 0;
   }
 
   &:empty,
