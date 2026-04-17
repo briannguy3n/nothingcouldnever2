@@ -31,7 +31,8 @@
   font-weight: 700;
   color: #ffffff;
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, transform 0.1s ease-out;
+  will-change: transform;
   margin-top: 10vh;
 
   &:hover {
@@ -44,7 +45,8 @@
   font-weight: 400;
   color: #888888;
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, transform 0.1s ease-out;
+  will-change: transform;
   margin-top: 38vh;
 
   &:hover {
