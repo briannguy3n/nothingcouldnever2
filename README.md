@@ -36,14 +36,17 @@ git commit -m "update linktree"
 git push
 ```
 
-`urls.txt` accepts both bare URLs (auto-classified by host) and `key: url`
-overrides for forcing a section or creating a custom one:
+Bare URLs render on the linktree either inside a category (if their host
+matches one) or category-less. `key: url` forces a specific category.
 
 ```
-https://open.spotify.com/album/abc         # → Releases (auto)
-sets: https://open.spotify.com/playlist/x  # → Sets & Recordings (override)
-Merch: https://shop.example.com/tee        # → new custom "Merch" section
+https://open.spotify.com/album/abc         # → matches → Releases
+https://some-random-site.com/thing         # → no match → rendered uncategorized
+sets: https://open.spotify.com/playlist/x  # → forced → Sets & Recordings
 ```
+
+Categories are defined manually in `tools/link-enricher/src/classify.js`
+(commented example included). They are never auto-created from `urls.txt`.
 
 Full docs: [`tools/link-enricher/README.md`](tools/link-enricher/README.md).
 

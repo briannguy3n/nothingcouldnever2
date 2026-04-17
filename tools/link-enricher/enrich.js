@@ -50,7 +50,7 @@ async function main() {
     const label = overrideKey ? `${overrideKey}: ${url}` : url;
     process.stdout.write(`  • ${label}\n`);
     try {
-      const { category, color_key, order, custom } = classify({ url, overrideKey });
+      const { category, color_key, order } = classify({ url, overrideKey });
       const { title, image_url } = await fetchMetadata(url);
       const { filename, buffer } = await prepareImage({ imageUrl: image_url, title, sourceUrl: url });
       pendingImages.push({ filename, buffer });
@@ -58,13 +58,11 @@ async function main() {
         category,
         color_key,
         order,
-        custom,
         title,
         url,
         image: `/assets/img/links/${filename}`,
       });
-      const tag = custom ? `${category} (custom)` : category;
-      console.log(`      → ${tag} — "${title}" → ${filename}`);
+      console.log(`      → ${category || '(uncategorized)'} — "${title}" → ${filename}`);
     } catch (err) {
       console.error(`\n  ✗ Failed: ${url}\n    ${err.message}\n`);
       console.error('Aborting. No files were written.');
@@ -80,7 +78,8 @@ async function main() {
   await writeFile(dataPath, yamlText, 'utf8');
 
   const counts = entries.reduce((acc, e) => {
-    acc[e.category] = (acc[e.category] || 0) + 1;
+    const label = e.category || '(uncategorized)';
+    acc[label] = (acc[label] || 0) + 1;
     return acc;
   }, {});
   console.log('\nDone.');

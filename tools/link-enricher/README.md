@@ -52,52 +52,39 @@ npm --prefix tools/link-enricher install
    open http://localhost:4000/links
    ```
 
+## Defining categories
+
+**Categories are not created automatically.** The `BUILTIN` array in
+`src/classify.js` starts empty — add every category you want on the page there.
+
+Each entry needs:
+
+- `keys` — lowercase aliases you can use in `urls.txt` as `key: url`
+- `hosts` — URL hosts auto-classified into this section for bare URLs (`[]` if
+  you only want key-based routing)
+- `category` — display name on the page
+- `color_key` — slug for SCSS (add `.linktree-thumb--<key>` in
+  `_sass/_linktree.scss` if you want a custom thumbnail color)
+- `order` — render order on the page, 0 first
+
+There's a commented `Releases` example at the top of the file — copy, uncomment,
+edit.
+
 ## urls.txt syntax
 
-Three line shapes:
-
 ```
-# 1. comment — ignored
-# 2. bare URL — auto-classified by host
+# Bare URL — dropped into a category if its host matches, otherwise rendered
+# on the linktree without a category heading.
 https://open.spotify.com/album/abc123
 
-# 3. key override — force a category, built-in or custom
+# Key override — force a specific category. Unknown keys → error.
 sets: https://open.spotify.com/playlist/my-dj-mix
-Merch: https://shop.example.com/tee
 ```
-
-**Bare URL** → host-based classification (see [mapping](#host--category-mapping)).
-
-**`key: url`** → the key wins over the host. Everything before the first colon is
-the category key; the rest must parse as a valid URL. Keys are case-insensitive
-for built-ins; for custom categories, the capitalization you use is the display
-name that appears on the linktree (`Merch` renders as "Merch").
-
-**Built-in keys:**
-
-| Key (any of) | Section |
-|---|---|
-| `releases`, `release` | Releases |
-| `sets`, `set`, `recordings`, `mixes`, `mix` | Sets & Recordings |
-| `shows`, `show`, `tour`, `tours` | Tour / Shows |
-| `video`, `videos` | Video |
-
-Anything else becomes a **custom section** with the exact display name you wrote.
 
 ## Section order
 
-On the page, sections always render in this order:
-
-1. Built-ins in canonical order: **Releases → Sets & Recordings → Tour / Shows → Video**.
-2. Custom sections append after, in the order they **first appear** in `urls.txt`.
-
-So if `urls.txt` contains `Merch: ...` then `Press: ...`, Merch comes before Press
-in the rendered page — but both always come after the four built-ins, even if
-those built-ins have zero entries.
-
-If you want a different section order, reorder `BUILTIN` in `src/classify.js`
-(built-ins) or reorder the first occurrence of each custom key in `urls.txt`
-(customs).
+Categorized sections render in the order of each category's `order` field in
+`src/classify.js`. Uncategorized links render after, with no section heading.
 
 ## What the script does, end to end
 
@@ -161,10 +148,10 @@ tools/link-enricher/
 ├── README.md              # you are here
 └── src/
     ├── parse-urls.js      # urls.txt → {url, overrideKey}
-    ├── classify.js        # host/key → category, custom section support
+    ├── classify.js        # host/key → built-in category
     ├── fetch-metadata.js  # oEmbed + Open Graph fallback
     ├── download-image.js  # thumbnail → in-memory buffer
-    ├── emit-yaml.js       # grouped YAML writer (built-ins, then customs)
+    ├── emit-yaml.js       # grouped YAML writer (built-in order)
     └── proxy.js           # honor HTTPS_PROXY env var
 ```
 

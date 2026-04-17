@@ -1,36 +1,26 @@
-import slugify from 'slugify';
-
-const BUILTIN = [
-  {
-    keys: ['releases', 'release'],
-    hosts: ['open.spotify.com', 'spotify.com', 'music.apple.com', 'itunes.apple.com', 'bandcamp.com'],
-    category: 'Releases',
-    color_key: 'releases',
-    order: 0,
-  },
-  {
-    keys: ['sets', 'set', 'recordings', 'recording', 'mixes', 'mix'],
-    hosts: ['soundcloud.com', 'm.soundcloud.com', 'mixcloud.com', 'www.mixcloud.com'],
-    category: 'Sets & Recordings',
-    color_key: 'sets',
-    order: 1,
-  },
-  {
-    keys: ['shows', 'show', 'tour', 'tours'],
-    hosts: [],
-    category: 'Tour / Shows',
-    color_key: 'shows',
-    order: 2,
-    isFallbackByHost: true,
-  },
-  {
-    keys: ['video', 'videos'],
-    hosts: ['youtube.com', 'www.youtube.com', 'm.youtube.com', 'youtu.be', 'vimeo.com', 'www.vimeo.com'],
-    category: 'Video',
-    color_key: 'video',
-    order: 3,
-  },
-];
+// Categories on the linktree page. Empty by default — add your own.
+//
+// Each entry:
+//   - keys:      lowercase aliases accepted in urls.txt as `key: url`
+//   - hosts:     URL hosts auto-classified into this section for bare URLs.
+//                Leave [] if you only want key-based routing.
+//   - category:  display name shown on the page
+//   - color_key: slug used in SCSS (add `.linktree-thumb--<key>` in
+//                _sass/_linktree.scss if you want a custom color)
+//   - order:     render order on the page (0 = first). Keep unique.
+//
+// Example — copy, uncomment, edit:
+//
+// const BUILTIN = [
+//   {
+//     keys: ['releases', 'release'],
+//     hosts: ['open.spotify.com', 'music.apple.com', 'bandcamp.com'],
+//     category: 'Releases',
+//     color_key: 'releases',
+//     order: 0,
+//   },
+// ];
+const BUILTIN = [];
 
 function findByKey(key) {
   const lc = key.toLowerCase().trim();
@@ -45,37 +35,35 @@ function findByHost(url) {
     if (b.hosts.includes(host) || b.hosts.includes(hostNoSub)) return b;
     if (b.hosts.some((h) => host === h || host.endsWith('.' + h))) return b;
   }
-  return BUILTIN.find((b) => b.isFallbackByHost);
+  return null;
 }
 
 export function classify({ url, overrideKey }) {
   if (overrideKey) {
     const match = findByKey(overrideKey);
-    if (match) {
-      return {
-        category: match.category,
-        color_key: match.color_key,
-        order: match.order,
-        custom: false,
-      };
+    if (!match) {
+      const known = BUILTIN.flatMap((b) => b.keys).join(', ') || '(none defined)';
+      throw new Error(
+        `Unknown category key "${overrideKey}". ` +
+        `Known keys: ${known}. ` +
+        `Define categories in tools/link-enricher/src/classify.js.`
+      );
     }
-    // Unknown key → custom section. Preserve user's capitalization for display;
-    // slug the key for CSS.
-    const category = overrideKey.trim();
     return {
-      category,
-      color_key: slugify(category, { lower: true, strict: true }) || 'custom',
-      order: null,
-      custom: true,
+      category: match.category,
+      color_key: match.color_key,
+      order: match.order,
     };
   }
 
   const match = findByHost(url);
+  if (!match) {
+    return { category: null, color_key: null, order: null };
+  }
   return {
     category: match.category,
     color_key: match.color_key,
     order: match.order,
-    custom: false,
   };
 }
 

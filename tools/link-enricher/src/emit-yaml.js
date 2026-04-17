@@ -1,36 +1,35 @@
 import yaml from 'js-yaml';
 import { BUILTIN_ORDER } from './classify.js';
 
+const UNCATEGORIZED = '__uncategorized__';
+
 export function buildYaml(entries) {
   const grouped = new Map();
-  const customOrder = [];
 
   for (const e of entries) {
-    if (!grouped.has(e.category)) {
-      grouped.set(e.category, {
+    const key = e.category || UNCATEGORIZED;
+    if (!grouped.has(key)) {
+      grouped.set(key, {
         category: e.category,
         color_key: e.color_key,
-        custom: e.custom,
         links: [],
       });
-      if (e.custom) customOrder.push(e.category);
     }
-    grouped.get(e.category).links.push({ title: e.title, url: e.url, image: e.image });
+    grouped.get(key).links.push({ title: e.title, url: e.url, image: e.image });
   }
 
-  const builtins = BUILTIN_ORDER
+  const orderedSections = BUILTIN_ORDER
     .map((c) => grouped.get(c.category))
     .filter(Boolean);
 
-  const customs = customOrder
-    .map((name) => grouped.get(name))
-    .filter(Boolean);
+  const uncategorized = grouped.get(UNCATEGORIZED);
 
-  const shaped = [...builtins, ...customs].map((section) => ({
-    category: section.category,
-    color_key: section.color_key,
-    links: section.links,
-  }));
+  const shaped = [...orderedSections, ...(uncategorized ? [uncategorized] : [])].map((section) => {
+    const out = { links: section.links };
+    if (section.category) out.category = section.category;
+    if (section.color_key) out.color_key = section.color_key;
+    return out;
+  });
 
   return yaml.dump(shaped, {
     lineWidth: -1,
