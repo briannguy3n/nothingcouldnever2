@@ -3,6 +3,17 @@
   {% include head.html %}
   <body class="linktree-page">
     <div class="linktree-wrapper">
+      <button
+        type="button"
+        class="linktree-page-share"
+        aria-label="Share this page"
+        data-share-trigger
+        data-url="{{ site.url }}{{ page.url | relative_url }}"
+        data-title="n0thing"
+        data-image="{{ '/assets/img/n0thing-avatar.jpg' | relative_url }}">
+        <i class="fa-solid fa-arrow-up-from-bracket" aria-hidden="true"></i>
+      </button>
+
       <div class="linktree-header">
         <div class="linktree-avatar">
           <img src="{{ '/assets/img/n0thing-avatar.jpg' | relative_url }}" alt="n0thing">
@@ -29,6 +40,7 @@
             type="button"
             class="linktree-card-share"
             aria-label="Share {{ link.title | escape }}"
+            data-share-trigger
             data-url="{{ link.url }}"
             data-title="{{ link.title | escape }}"
             {% if link.image %}data-image="{{ link.image | relative_url }}"{% endif %}>
@@ -38,6 +50,21 @@
         {% endfor %}
       </div>
       {% endfor %}
+
+      <nav class="linktree-socials" aria-label="Social links">
+        <a href="https://instagram.com/nothingcouldnever" target="_blank" rel="noopener noreferrer" class="linktree-social" aria-label="Instagram">
+          <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+        </a>
+        <a href="https://nothingcouldnever.bandcamp.com" target="_blank" rel="noopener noreferrer" class="linktree-social" aria-label="Bandcamp">
+          <i class="fa-brands fa-bandcamp" aria-hidden="true"></i>
+        </a>
+        <a href="https://open.spotify.com/artist/2jOSPjlx9uGVPAdDQ402VY?si=Fm0mCAJsQJ-tzFJpYNOC4g" target="_blank" rel="noopener noreferrer" class="linktree-social" aria-label="Spotify">
+          <i class="fa-brands fa-spotify" aria-hidden="true"></i>
+        </a>
+        <a href="{{ '/personal' | relative_url }}" class="linktree-social" aria-label="Other stuff">
+          <i class="fa-solid fa-globe" aria-hidden="true"></i>
+        </a>
+      </nav>
     </div>
 
     <div class="linktree-share" hidden aria-hidden="true">

@@ -123,7 +123,7 @@
     });
   }
 
-  document.querySelectorAll('.linktree-card-share').forEach((btn) => {
+  document.querySelectorAll('[data-share-trigger]').forEach((btn) => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
