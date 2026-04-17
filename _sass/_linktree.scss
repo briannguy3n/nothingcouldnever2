@@ -18,11 +18,38 @@
 }
 
 .linktree-wrapper {
+  position: relative;
   max-width: 520px;
   margin: 0 auto;
   padding: 48px 20px;
   background: #000000;
   border-radius: 28px;
+}
+
+// Top-right page-level share trigger
+.linktree-page-share {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 0;
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+
+  &:hover,
+  &:focus-visible {
+    background: rgba(255, 255, 255, 0.14);
+    transform: translateY(-1px);
+    outline: none;
+  }
 }
 
 // Profile header
