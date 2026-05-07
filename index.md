@@ -1,5 +1,5 @@
 ---
 layout: chooser
-title: n0thing
+title: nøthing
 permalink: /
 ---
