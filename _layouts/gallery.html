@@ -10,15 +10,39 @@ layout: no-header
     {% for file in gallery_files %}
       {% assign file_path = file.path | downcase %}
       {% if file_path contains 'assets/img/gallery/' %}
-        {% if file.extname == '.jpg' or file.extname == '.jpeg' or file.extname == '.png' or file.extname == '.gif' or file.extname == '.webp' %}
+        {% assign ext = file.extname | downcase %}
+        {% assign is_image = false %}
+        {% assign is_video = false %}
+        {% if ext == '.jpg' or ext == '.jpeg' or ext == '.png' or ext == '.gif' or ext == '.webp' %}
+          {% assign is_image = true %}
+        {% elsif ext == '.mp4' or ext == '.webm' or ext == '.mov' or ext == '.m4v' %}
+          {% assign is_video = true %}
+        {% endif %}
+        {% if is_image or is_video %}
           {% assign description = page.descriptions[file.name] %}
           <div class="gallery-item" data-modified="{{ file.modified_time | date: '%s' }}">
-            <img data-src="{{ site.baseurl }}{{ file.path }}" 
-                 alt="" 
-                 class="gallery-thumbnail lazy-image"
-                 data-full="{{ site.baseurl }}{{ file.path }}"
-                 data-description="{{ description }}"
-                 loading="lazy">
+            {% if is_image %}
+              <img data-src="{{ site.baseurl }}{{ file.path }}"
+                   alt=""
+                   class="gallery-thumbnail lazy-image"
+                   data-type="image"
+                   data-full="{{ site.baseurl }}{{ file.path }}"
+                   data-description="{{ description }}"
+                   loading="lazy">
+            {% else %}
+              {% assign mime = 'video/mp4' %}
+              {% if ext == '.webm' %}{% assign mime = 'video/webm' %}{% endif %}
+              {% if ext == '.mov' %}{% assign mime = 'video/quicktime' %}{% endif %}
+              <video class="gallery-thumbnail lazy-video"
+                     data-type="video"
+                     data-full="{{ site.baseurl }}{{ file.path }}"
+                     data-mime="{{ mime }}"
+                     data-description="{{ description }}"
+                     muted
+                     loop
+                     playsinline
+                     preload="metadata"></video>
+            {% endif %}
           </div>
         {% endif %}
       {% endif %}
@@ -30,6 +54,7 @@ layout: no-header
 <div id="lightbox" class="lightbox">
   <span class="lightbox-close">&times;</span>
   <img class="lightbox-content" id="lightbox-img">
+  <video class="lightbox-content" id="lightbox-video" controls playsinline></video>
   <div class="lightbox-caption" id="lightbox-caption"></div>
   <a class="lightbox-prev">&#10094;</a>
   <a class="lightbox-next">&#10095;</a>
@@ -64,33 +89,42 @@ layout: no-header
     // // Re-append items in shuffled order
     // items.forEach(item => gallery.appendChild(item));
     
-    // Lazy loading with Intersection Observer
-    const lazyImages = document.querySelectorAll('.lazy-image');
-    
-    // Configuration for the observer
-    const imageObserverOptions = {
-      root: null, // viewport
-      rootMargin: '50px', // start loading 50px before image enters viewport
+    // Lazy loading with Intersection Observer (images + videos)
+    const lazyMedia = document.querySelectorAll('.lazy-image, .lazy-video');
+
+    const mediaObserverOptions = {
+      root: null,
+      rootMargin: '50px',
       threshold: 0.01
     };
-    
-    // Callback function when image intersects
-    const imageObserver = new IntersectionObserver((entries, observer) => {
+
+    const mediaObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const img = entry.target;
-          const src = img.getAttribute('data-src');
-          
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+
+        if (el.tagName === 'IMG') {
+          const src = el.getAttribute('data-src');
           if (src) {
-            img.src = src;
-            img.classList.add('loaded');
-            observer.unobserve(img); // Stop observing once loaded
+            el.src = src;
+            el.classList.add('loaded');
+          }
+        } else if (el.tagName === 'VIDEO') {
+          const src = el.getAttribute('data-full');
+          const mime = el.getAttribute('data-mime') || 'video/mp4';
+          if (src && !el.querySelector('source')) {
+            const source = document.createElement('source');
+            source.src = src;
+            source.type = mime;
+            el.appendChild(source);
+            el.load();
+            el.classList.add('loaded');
           }
         }
+        observer.unobserve(el);
       });
-    }, imageObserverOptions);
-    
-    // Start observing all lazy images
-    lazyImages.forEach(img => imageObserver.observe(img));
+    }, mediaObserverOptions);
+
+    lazyMedia.forEach(el => mediaObserver.observe(el));
   });
 </script>
