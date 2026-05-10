@@ -15,7 +15,6 @@ permalink: /notes
 
 <div class="notes-page-outer">
   <div class="notes-page-inner">
-    <h2 class="notes-page-title">Notes</h2>
     <!-- Add your notes content here -->
   </div>
 </div>
