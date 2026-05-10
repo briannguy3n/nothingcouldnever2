@@ -9,7 +9,7 @@ layout: no-header
     {% assign gallery_files = site.static_files %}
     {% for file in gallery_files %}
       {% assign file_path = file.path | downcase %}
-      {% if file_path contains 'assets/img/gallery/' %}
+      {% if file_path contains 'assets/gallery/images/' or file_path contains 'assets/gallery/videos/' %}
         {% assign ext = file.extname | downcase %}
         {% assign is_image = false %}
         {% assign is_video = false %}

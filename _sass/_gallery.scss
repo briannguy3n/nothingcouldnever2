@@ -53,12 +53,14 @@ body:has(.gallery-content) .content-wrapper {
 }
 
 /* Lazy loading states */
-.gallery-thumbnail.lazy-image {
+.gallery-thumbnail.lazy-image,
+.gallery-thumbnail.lazy-video {
   opacity: 0;
   transition: opacity 0.5s ease-in;
 }
 
-.gallery-thumbnail.lazy-image.loaded {
+.gallery-thumbnail.lazy-image.loaded,
+.gallery-thumbnail.lazy-video.loaded {
   opacity: 1;
 }
 
