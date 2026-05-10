@@ -1,6 +1,6 @@
 ---
 layout: gallery
-permalink: /photos
+permalink: /gallery
 descriptions:
   # Add descriptions for specific photos (optional)
   # Use the filename as the key, description as the value
