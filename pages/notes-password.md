@@ -8,7 +8,7 @@ permalink: /notes-password
 <div class="notes-password-page">
   <div class="password-container">
     <h2 class="password-title">Protected Content</h2>
-    <p class="password-prompt">what was the first car I owned</p>
+    <p class="password-prompt"></p>
     <form id="password-form" class="password-form">
       <input 
         type="password" 
@@ -23,5 +23,8 @@ permalink: /notes-password
   </div>
 </div>
 
+<script>
+  var PASSWORD_PROMPTS = {{ site.data.password_prompts | jsonify }};
+</script>
 <script src="{{ '/assets/js/notes-password.js' | relative_url }}"></script>
 

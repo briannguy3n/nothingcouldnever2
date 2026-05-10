@@ -30,3 +30,6 @@ tools/link-enricher/node_modules/
 tools/link-enricher/package-lock.json
 
 .claude/worktrees
+
+# Plaintext password reference — never commit
+_data/password_prompts.plaintext.json
