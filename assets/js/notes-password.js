@@ -1,34 +1,36 @@
 // Password protection for notes page
 (function() {
-  const correctPassword = 'lancer';
-  const form = document.getElementById('password-form');
-  const input = document.getElementById('password-input');
-  const errorMessage = document.getElementById('error-message');
+  var prompts = window.PASSWORD_PROMPTS || [];
+  var picked = prompts[Math.floor(Math.random() * prompts.length)];
 
-  // Check if already authenticated
+  var form = document.getElementById('password-form');
+  var input = document.getElementById('password-input');
+  var errorMessage = document.getElementById('error-message');
+  var promptEl = document.querySelector('.password-prompt');
+
   if (sessionStorage.getItem('notesAuthenticated') === 'true') {
     window.location.href = '/notes';
     return;
   }
 
+  if (picked && promptEl) {
+    promptEl.textContent = picked.question;
+  }
+
   form.addEventListener('submit', function(e) {
     e.preventDefault();
-    
-    const enteredPassword = input.value.trim().toLowerCase();
-    
-    if (enteredPassword === correctPassword) {
-      // Set session flag
+
+    var entered = input.value.trim().toLowerCase();
+
+    if (picked && entered === picked.answer.toLowerCase()) {
       sessionStorage.setItem('notesAuthenticated', 'true');
-      // Redirect to notes page
       window.location.href = '/notes';
     } else {
-      // Show error message
       errorMessage.textContent = 'Incorrect password. Please try again.';
       errorMessage.style.display = 'block';
       input.value = '';
       input.focus();
-      
-      // Clear error message after 3 seconds
+
       setTimeout(function() {
         errorMessage.style.display = 'none';
         errorMessage.textContent = '';
@@ -36,7 +38,5 @@
     }
   });
 
-  // Focus input on page load
   input.focus();
 })();
-
