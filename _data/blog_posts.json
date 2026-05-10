@@ -1,0 +1,12 @@
+[
+  {
+    "disabled": true,
+    "filename": "your-screenshot.png",
+    "date": "YYYY-MM-DD",
+    "title": "optional caption"
+  },
+  {
+    "filename": "example.png",
+    "date": "2026-05-10"
+  }
+]
