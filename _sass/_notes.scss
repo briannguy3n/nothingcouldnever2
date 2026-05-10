@@ -68,3 +68,35 @@ body:has(.notes-page-outer) .content-wrapper {
     gap: 16px;
   }
 }
+
+/* Share view — single post page (/notes/post?token=...) */
+.notes-share-outer {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.notes-share-view {
+  width: 100%;
+  max-width: 800px;
+}
+
+.notes-share-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+}
+
+.notes-share-date {
+  text-align: center;
+  font-size: 13px;
+  color: #666;
+  margin-top: 10px;
+}
+
+.notes-share-not-found {
+  color: #999;
+  font-size: 14px;
+  padding: 60px 0;
+}

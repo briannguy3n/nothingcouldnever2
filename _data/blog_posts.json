@@ -3,10 +3,12 @@
     "disabled": true,
     "filename": "your-screenshot.png",
     "date": "YYYY-MM-DD",
-    "title": "optional caption"
+    "title": "optional caption",
+    "share_token": "your-token"
   },
   {
     "filename": "example.png",
-    "date": "2026-05-10"
+    "date": "2026-05-10",
+    "share_token": "k8m2x9"
   }
 ]
