@@ -30,18 +30,12 @@ exclude:
   - README.md
   - CLAUDE.md
 
-# Notes collection: one .md per share token → /notes/<token>/
-collections:
-  notes:
-    output: true
-    permalink: /notes/:name/
-
+# Notes share pages live at pages/notes/<token>.md and render via note-share layout.
 defaults:
   - scope:
-      path: ""
-      type: notes
+      path: "pages/notes"
+      type: pages
     values:
       layout: note-share
       sitemap: false
       title: Notes
-      permalink: /notes/:path/
