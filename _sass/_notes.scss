@@ -1,6 +1,17 @@
-.notes-page-home-link {
-  display: block;
-  margin-top: 10rem;
+.notes-back-link {
+  position: fixed;
+  bottom: 20px;
+  right: 24px;
+  z-index: 1000;
+  font-size: 22px;
+  line-height: 1;
+  color: #666;
+  text-decoration: none;
+  padding: 6px 10px;
+
+  &:hover {
+    color: #000;
+  }
 }
 
 /* Override container constraints for notes gallery */

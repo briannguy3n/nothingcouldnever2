@@ -16,22 +16,24 @@ permalink: /notes
   <div class="notes-page-inner">
 
     <div class="notes-grid">
-      {% assign sorted_posts = site.data.blog_posts | sort: "date" | reverse %}
-      {% for post in sorted_posts %}
-        {% if post.disabled %}{% continue %}{% endif %}
+      {% assign sorted_notes = site.notes | sort: "date" | reverse %}
+      {% for note in sorted_notes %}
         <div class="notes-item">
-          <img src="{{ site.baseurl }}/assets/notes/images/{{ post.filename }}"
-               alt="{{ post.title }}"
+          <img src="{{ site.baseurl }}/assets/notes/images/{{ note.filename }}"
+               alt="{{ note.caption }}"
                class="notes-thumbnail gallery-thumbnail"
                data-type="image"
-               data-full="{{ site.baseurl }}/assets/notes/images/{{ post.filename }}"
-               data-description="{{ post.title }}"
-               data-date="{{ post.date }}"
-               data-share-token="{{ post.share_token }}">
-          <div class="notes-date" data-date="{{ post.date }}">{{ post.date }}</div>
+               data-full="{{ site.baseurl }}/assets/notes/images/{{ note.filename }}"
+               data-description="{{ note.caption }}"
+               data-share-token="{{ note.slug }}">
+          <div class="notes-date">{{ note.date | date: "%B %-d, %Y" }}</div>
         </div>
       {% endfor %}
     </div>
+
+    <a href="{{ site.baseurl }}/"
+       class="notes-back-link"
+       aria-label="Back to home">←</a>
 
   </div>
 </div>
@@ -45,23 +47,3 @@ permalink: /notes
 </div>
 
 <script src="{{ site.baseurl }}/assets/js/notes-lightbox.js"></script>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    function formatDate(dateStr) {
-      if (!dateStr) return '';
-      var parts = dateStr.split('-');
-      if (parts.length !== 3) return dateStr;
-      var months = ['January','February','March','April','May','June',
-                    'July','August','September','October','November','December'];
-      var month = months[parseInt(parts[1], 10) - 1];
-      var day = parseInt(parts[2], 10);
-      var year = parts[0];
-      return month + ' ' + day + ', ' + year;
-    }
-
-    document.querySelectorAll('.notes-date').forEach(function(el) {
-      el.textContent = formatDate(el.getAttribute('data-date'));
-    });
-  });
-</script>
