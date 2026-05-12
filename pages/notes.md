@@ -26,7 +26,8 @@ permalink: /notes
                data-type="image"
                data-full="{{ site.baseurl }}/assets/notes/images/{{ post.filename }}"
                data-description="{{ post.title }}"
-               data-date="{{ post.date }}">
+               data-date="{{ post.date }}"
+               data-share-token="{{ post.share_token }}">
           <div class="notes-date" data-date="{{ post.date }}">{{ post.date }}</div>
         </div>
       {% endfor %}
@@ -36,16 +37,14 @@ permalink: /notes
 </div>
 
 <!-- Lightbox Modal -->
-<div id="lightbox" class="lightbox">
+<div id="lightbox" class="lightbox notes-lightbox">
   <span class="lightbox-close">&times;</span>
   <img class="lightbox-content" id="lightbox-img">
   <video class="lightbox-content" id="lightbox-video" controls playsinline></video>
   <div class="lightbox-caption" id="lightbox-caption"></div>
-  <a class="lightbox-prev">&#10094;</a>
-  <a class="lightbox-next">&#10095;</a>
 </div>
 
-<script src="{{ site.baseurl }}/assets/js/lightbox.js"></script>
+<script src="{{ site.baseurl }}/assets/js/notes-lightbox.js"></script>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {

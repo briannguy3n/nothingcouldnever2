@@ -205,22 +205,40 @@ body:has(.gallery-content) .content-wrapper {
   .lightbox-content {
     max-width: 95%;
   }
-  
+
   .lightbox-close {
     top: 10px;
     right: 15px;
     font-size: 30px;
   }
-  
+
   .lightbox-prev,
   .lightbox-next {
     font-size: 20px;
     padding: 10px;
   }
-  
+
   .lightbox-caption {
     font-size: 14px;
     width: 90%;
+  }
+}
+
+/* Notes-only lightbox overrides (scoped via #lightbox.notes-lightbox) */
+#lightbox.notes-lightbox {
+  background-color: rgba(255, 255, 255, 0.97);
+
+  .lightbox-close {
+    color: #222;
+
+    &:hover,
+    &:focus {
+      color: #666;
+    }
+  }
+
+  .lightbox-caption {
+    color: #333;
   }
 }
 
