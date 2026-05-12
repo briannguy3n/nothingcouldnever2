@@ -1,0 +1,12 @@
+---
+layout: no-header
+---
+
+<div class="notes-share-outer">
+  <div class="notes-share-view">
+    <img src="{{ site.baseurl }}/assets/notes/images/{{ page.filename }}"
+         alt="{{ page.caption | default: '' }}"
+         class="notes-share-image">
+    <div class="notes-share-date">{{ page.date | date: "%B %-d, %Y" }}</div>
+  </div>
+</div>

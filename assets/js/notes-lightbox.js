@@ -1,4 +1,4 @@
-// Notes-only lightbox: opens a single post, updates URL to /notes/post?token=<token>,
+// Notes-only lightbox: opens a single post, updates URL to /notes/<token>/,
 // closes on overlay/close/Escape/browser-back. No prev/next navigation.
 (function() {
   const lightbox = document.getElementById('lightbox');
@@ -66,7 +66,7 @@
     if (opts && opts.pushHistory) {
       const token = thumbnails[index].dataset.shareToken;
       if (token) {
-        history.pushState({ notesLightbox: true }, '', '/notes/post?token=' + token);
+        history.pushState({ notesLightbox: true }, '', '/notes/' + token + '/');
       }
     }
   }
@@ -78,7 +78,7 @@
     lightboxImg.src = '';
     isOpen = false;
 
-    if (opts && opts.restoreUrl && location.pathname === '/notes/post') {
+    if (opts && opts.restoreUrl && /^\/notes\/[^\/]+\/?$/.test(location.pathname)) {
       history.replaceState(null, '', '/notes');
     }
   }

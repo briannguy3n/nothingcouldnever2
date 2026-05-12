@@ -29,3 +29,18 @@ exclude:
   - Gemfile.lock
   - README.md
   - CLAUDE.md
+
+# Notes collection: one .md per share token → /notes/<token>/
+collections:
+  notes:
+    output: true
+    permalink: /notes/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: notes
+    values:
+      layout: note-share
+      sitemap: false
+      title: Notes
