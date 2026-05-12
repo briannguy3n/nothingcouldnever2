@@ -7,8 +7,14 @@
     "share_token": "your-token"
   },
   {
+    "disabled": true,
     "filename": "example.png",
     "date": "2026-05-10",
     "share_token": "k8m2x9"
+  },
+  {
+    "filename": "meanings.jpg",
+    "date": "2026-10-10",
+    "share_token": "f2hut409"
   }
 ]
