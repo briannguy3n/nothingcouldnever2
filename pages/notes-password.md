@@ -7,7 +7,6 @@ permalink: /notes-password
 <!-- Password validation and redirect to /notes is handled in notes-password.js -->
 <div class="notes-password-page">
   <div class="password-container">
-    <h2 class="password-title">Protected Content</h2>
     <p class="password-prompt"></p>
     <form id="password-form" class="password-form">
       <input 
