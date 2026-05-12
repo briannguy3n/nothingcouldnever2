@@ -32,9 +32,9 @@ permalink: /notes
       {% endfor %}
     </div>
 
-    <a href="{{ site.baseurl }}/"
+    <a href="{{ site.baseurl }}/personal"
        class="notes-back-link"
-       aria-label="Back to home">←</a>
+       aria-label="Back to personal">←</a>
 
   </div>
 </div>
