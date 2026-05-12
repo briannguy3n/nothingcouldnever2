@@ -44,3 +44,4 @@ defaults:
       layout: note-share
       sitemap: false
       title: Notes
+      permalink: /notes/:path/
