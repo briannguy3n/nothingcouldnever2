@@ -2,6 +2,17 @@
 layout: no-header
 ---
 
+{% if page.protected %}
+<script>
+  (function() {
+    if (sessionStorage.getItem('notesAuthenticated') !== 'true') {
+      sessionStorage.setItem('notesRedirectAfterAuth', window.location.pathname);
+      window.location.href = '/notes-password';
+    }
+  })();
+</script>
+{% endif %}
+
 <div class="notes-share-outer">
   <div class="notes-share-view">
     <img src="{{ site.baseurl }}/assets/notes/images/{{ page.filename }}"
