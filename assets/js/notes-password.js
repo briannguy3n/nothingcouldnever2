@@ -8,8 +8,14 @@
   var errorMessage = document.getElementById('error-message');
   var promptEl = document.querySelector('.password-prompt');
 
+  function consumeRedirect() {
+    var next = sessionStorage.getItem('notesRedirectAfterAuth') || '/notes';
+    sessionStorage.removeItem('notesRedirectAfterAuth');
+    return next;
+  }
+
   if (sessionStorage.getItem('notesAuthenticated') === 'true') {
-    window.location.href = '/notes';
+    window.location.href = consumeRedirect();
     return;
   }
 
@@ -34,7 +40,7 @@
     sha256(entered).then(function(hash) {
       if (picked && hash === picked.answer) {
         sessionStorage.setItem('notesAuthenticated', 'true');
-        window.location.href = '/notes';
+        window.location.href = consumeRedirect();
       } else {
         errorMessage.textContent = 'Incorrect password. Please try again.';
         errorMessage.style.display = 'block';
