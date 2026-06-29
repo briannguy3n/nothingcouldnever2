@@ -1,5 +1,5 @@
 ---
 layout: linktree
-title: "nøthing — links"
+title: "n0thing — links"
 permalink: /links
 ---
